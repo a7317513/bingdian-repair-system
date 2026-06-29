@@ -1,19 +1,14 @@
-<!doctype html>
-<html lang="zh-Hant">
-<head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>冰點冷氣維修系統 v15</title>
-<link rel="stylesheet" href="style.css"/>
-</head>
-<body>
-<main id="app">
-<header>
-  <div><h1>冰點冷氣維修系統</h1><p>v15 功能凍結整合版</p></div>
-  <div class="score"><span>評分</span><b id="score">100</b></div>
-</header>
-<section id="screen"></section>
-<section id="actions"></section>
-</main>
-<script src="app.js"></script>
-</body></html>
+<!doctype html><html><head><meta charset='utf-8'><title>冰點冷氣維修系統 v16 Preview</title>
+<style>body{font-family:sans-serif;margin:20px}button{padding:8px;margin:4px}#log{border:1px solid #ccc;padding:10px;height:300px;overflow:auto}</style></head>
+<body><h1>冰點冷氣維修系統 v16 Preview</h1>
+<p>本版修正：聲音可重複播放、壓縮機無運轉壓力不變、可放棄案件。</p>
+<button onclick="log('未開機：無運轉聲')">聽聲音(關機)</button>
+<button onclick="log('開機後：嗡～～3秒停止')">聽聲音(故障)</button>
+<button onclick="log('電流：18A→0A；壓力：160psi(不變)')">量測案例</button>
+<button onclick="log('發現疑似缺冷媒：請先目視油漬')">冷媒判斷</button>
+<button onclick="restart()">放棄案件/重新開始</button>
+<div id='log'></div>
+<script>
+function log(t){document.getElementById('log').innerHTML+="<div>"+t+"</div>"}
+function restart(){document.getElementById('log').innerHTML="<b>案件已重置</b>"}
+</script></body></html>
