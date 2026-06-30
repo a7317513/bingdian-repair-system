@@ -2,151 +2,150 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>冰點冷氣維修系統 v16</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>冰點冷氣維修系統 v20 Learning</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",sans-serif;background:#eef5f9;color:#172330;overflow:hidden}
-#app{height:100vh;display:flex;flex-direction:column}
-header{height:70px;display:flex;justify-content:space-between;align-items:center;padding:10px 16px;background:linear-gradient(135deg,#def3ff,#fff);border-bottom:1px solid #cfdde8}
-h1{margin:0;font-size:21px} header p{margin:3px 0 0;color:#647482;font-size:13px}
-.score{background:#fff;border:1px solid #d6e2eb;border-radius:14px;padding:6px 12px;text-align:center}
-.score span{display:block;font-size:11px;color:#667}.score b{font-size:22px}
-#screen{flex:1;min-height:0;overflow:hidden}
-#actions{background:#ffffffee;border-top:1px solid #d7e3ec;padding:8px;display:flex;gap:5px;flex-wrap:wrap}
-.btn{border:0;border-radius:12px;background:#1f8acb;color:#fff;font-weight:800;font-size:14px;padding:10px 12px}
-.btn2{background:#eaf1f6;color:#1d2733}.btnWarn{background:#b76d0c}.btnDanger{background:#a72121}
-.layout{height:100%;display:grid;grid-template-columns:minmax(0,1fr) 390px;gap:8px;padding:8px}
-.scene{position:relative;border-radius:18px;overflow:hidden;background:#dcecf5;border:1px solid #cbd9e5}
-.scene svg{width:100%;height:100%;display:block}
-.panel{min-height:0;background:white;border:1px solid #d7e3ec;border-radius:18px;padding:10px;display:flex;flex-direction:column}
-.panel h2{font-size:15px;margin:4px 0 6px}
-.known{flex:1;min-height:0;overflow-y:auto;border:1px solid #e1eaf1;border-radius:12px;background:#f7fbfe;padding:6px}
-.data{background:#fff;border:1px solid #dbe7ef;border-radius:10px;padding:6px;margin-bottom:5px;line-height:1.35;font-size:12px}
-.status{height:100px;overflow:auto;margin-top:6px;background:#142231;color:#d9f5ff;border-radius:12px;line-height:1.45;padding:8px;font-size:12px;white-space:pre-line}
-.toolPanel{border:1px solid #d7e3ec;border-radius:12px;padding:8px;background:#f8fbff;margin-bottom:6px}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",sans-serif;background:#eef5f9;color:#172330}
+#app{min-height:100dvh;display:flex;flex-direction:column}
+header{height:56px;display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:#fff;border-bottom:1px solid #d7e3ec;position:sticky;top:0;z-index:5}
+h1{font-size:17px;margin:0} small{color:#657583}.badge{background:#eaf7ff;border:1px solid #bfe4f8;border-radius:12px;padding:5px 9px;font-weight:900}
+main{flex:1;display:flex;flex-direction:column;min-height:0}
+#scene{flex:1;min-height:330px;position:relative;background:#dcecf5;overflow:hidden;border-bottom:1px solid #ccdbe6}
+#scene svg{width:100%;height:100%;display:block}
+#bottom{height:345px;background:#fff;display:flex;flex-direction:column;border-top:1px solid #d7e3ec}
+.tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;padding:6px;background:#f7fbfe}
+.tab{border:1px solid #d5e2eb;background:#fff;border-radius:10px;padding:8px 4px;font-size:12px;font-weight:900}
+.tab.on{background:#1f8acb;color:white}
+.panel{flex:1;min-height:0;overflow:auto;padding:8px}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-.miniBtn{border:1px solid #cbd9e4;background:#fff;border-radius:10px;padding:7px;text-align:left;font-weight:800;font-size:12px}
-.miniBtn.active{background:#1f8acb;color:#fff}.miniBtn small{display:block;font-weight:400;color:#617181;font-size:10px;margin-top:2px}.miniBtn.active small{color:#e8f7ff}
-.spot{position:absolute;border:2px solid #177bc0;background:#ffffffd8;border-radius:999px;padding:7px 9px;font-weight:800;font-size:13px;box-shadow:0 4px 10px #0002}
-.card{margin:10px;padding:14px;background:white;border:1px solid #d9e5ee;border-radius:18px;box-shadow:0 10px 24px #2d506014}
-.ticket{background:#fffdf3;border:2px dashed #d8bb5f}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.choice,.selectTool{border:1px solid #cbd9e4;background:#fff;border-radius:12px;padding:10px;text-align:left;font-size:14px}
-.selectTool.selected{background:#e2f4ff;border-color:#1f8acb}.selectTool small{display:block;color:#607080;margin-top:4px}
-.danger{color:#d73b3b;font-weight:800}.ok{color:#168a4a;font-weight:800}
-.meter{background:#101f2d;color:#e9f8ff;border-radius:12px;padding:8px;text-align:center;margin:5px 0;font-size:12px}
-.meter .v{font-size:23px;font-weight:900}
+.btn{border:0;background:#1f8acb;color:#fff;border-radius:12px;padding:10px;font-size:14px;font-weight:900;margin:3px}
+.btn2{background:#eaf1f6;color:#1d2733}.warn{background:#b76d0c}.danger{background:#a72121}
+.card{background:#fff;border:1px solid #dbe7ef;border-radius:12px;padding:8px;margin:5px 0;font-size:13px;line-height:1.4}
+.bigcard{background:#fff;border:1px solid #dbe7ef;border-radius:16px;padding:14px;margin:12px;font-size:15px;line-height:1.5;box-shadow:0 8px 22px #22334418}
+.data{background:#f7fbfe;border:1px solid #dbe7ef;border-radius:10px;padding:7px;margin:5px 0;font-size:12px;line-height:1.4}
+.statusGrid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.statusItem{background:#f7fbfe;border:1px solid #dbe7ef;border-radius:10px;padding:7px;font-size:12px;line-height:1.35}
+.statusItem b{display:block;color:#27455c}
+.tool{border:1px solid #cbd9e4;background:#fff;border-radius:10px;padding:8px;text-align:left;font-weight:900;font-size:12px}
+.tool.on{background:#1f8acb;color:#fff}.tool small{display:block;color:#607080;font-weight:400}.tool.on small{color:#e7f8ff}
+.spot{position:absolute;border:2px solid #177bc0;background:#ffffffdd;border-radius:999px;padding:7px 9px;font-weight:900;font-size:13px;box-shadow:0 4px 10px #0002}
 .display{fill:#10202c;stroke:#456;stroke-width:3}.tiny{font-size:11px;fill:#37e1ff}
 .pcb{fill:#1d5a3e;stroke:#103423;stroke-width:3}.whiteLabel{font-size:12px;fill:#fff}.label{font-size:12px;fill:#122}
-.burn{fill:#1d1d1d}.normalPart{fill:#dff7e9;stroke:#2ca25f;stroke-width:2}
-.fuseBad{fill:#111;stroke:#777;stroke-width:2}.fuseGood{fill:#dff7e9;stroke:#2ca25f;stroke-width:2}
-.gaugeBlue{fill:none;stroke:#2499df;stroke-width:14}.needle{stroke:#1a3346;stroke-width:5;stroke-linecap:round}
+.burn{fill:#1d1d1d}.normal{fill:#dff7e9;stroke:#2ca25f;stroke-width:2}.bad{fill:#111;stroke:#777;stroke-width:2}
+.gauge{fill:none;stroke:#2499df;stroke-width:14}.needle{stroke:#1a3346;stroke-width:5;stroke-linecap:round}
 .filterDirt{fill:#5d5142;opacity:.7}.filterClean{fill:#dff7e9;stroke:#2ca25f}
-.ladder{fill:#d7e0e5;stroke:#789;stroke-width:4}.rain{stroke:#3a93c9;stroke-width:3}.ventBad{fill:#c0392b;opacity:.35}.gas{fill:#8e44ad;opacity:.35}
-.flame{fill:#ff9c22;stroke:#d35400;stroke-width:2}.neutral{fill:#55d6ff;stroke:#1f8acb;stroke-width:2}.smoke{fill:#111;opacity:.65}
-.modal{position:fixed;inset:0;background:#0008;display:flex;align-items:center;justify-content:center;z-index:50;padding:16px}.modal .box{max-width:680px;width:100%;background:#fff;border-radius:20px;padding:14px}
-@media(max-width:900px){body{overflow:auto}#app{height:auto;min-height:100vh}.layout{height:auto;display:block}.scene{height:55vh;margin-bottom:8px}.panel{height:52vh}.grid{grid-template-columns:1fr 1fr}header{height:auto}h1{font-size:18px}}
+.ventBad{fill:#c0392b;opacity:.35}
+.toast{position:fixed;left:10px;right:10px;bottom:356px;background:#142231;color:#d9f5ff;border-radius:12px;padding:10px;z-index:10;font-size:13px;box-shadow:0 8px 24px #0004}
+.logline{border-left:4px solid #1f8acb;padding:4px 6px;margin:4px 0;background:#f7fbfe;border-radius:6px;font-size:12px}
+.gameover{background:#2a1015;color:#ffe8e8;border-color:#c33}
+.ok{color:#168a4a;font-weight:900}.dangerText{color:#c82333;font-weight:900}
+@media(min-width:850px){#app{height:100vh} main{display:grid;grid-template-columns:1fr 420px}#scene{min-height:0;height:calc(100vh - 56px);border-right:1px solid #ccdbe6}#bottom{height:calc(100vh - 56px);border-top:0}.toast{left:auto;right:440px;bottom:18px;width:360px}}
 </style>
 </head>
 <body>
-<main id="app">
-<header><div><h1>冰點冷氣維修系統</h1><p>v16 可運行整合版</p></div><div class="score"><span>評分</span><b id="score">100</b></div></header>
-<section id="screen"></section>
-<section id="actions"></section>
+<div id="app">
+<header><div><h1>冰點冷氣維修系統</h1><small>v20 學習模式</small></div><div class="badge" id="score">0</div></header>
+<main>
+<section id="scene"></section>
+<section id="bottom">
+<div class="tabs">
+<button class="tab on" onclick="tab='tools';draw()">工具</button>
+<button class="tab" onclick="tab='status';draw()">現況</button>
+<button class="tab" onclick="tab='repair';draw()">維修</button>
+<button class="tab" onclick="tab='log';draw()">紀錄</button>
+<button class="tab" onclick="tab='case';draw()">工單</button>
+</div>
+<div class="panel" id="panel"></div>
+</section>
 </main>
+</div>
 
 <script>
-let selected=new Set(), known=[], currentView='start';
-let state={
- breakerOn:true, unitOn:false, envChecked:false, ladderSet:false, safetyBelt:false,
- indoorCover:false, outdoorCover:false, displaySeen:false, filter:false, filterClean:false,
- current:false, pressure:false, compOhm:false, capMeasured:false, capReplaced:false,
- fuseSeen:false, fuseReplaced:false, boardChecked:false, boardReplaced:false,
- retested:false, restored:false, tool:'未選', mode:'未選', target:'未選',
- oilSeen:false, leakConfirmed:false, valvesClosed:false, insulationRemoved:false, heatShield:false,
- fireBlanket:false, extinguisherReady:false, oxygen:0, acetylene:0, ignited:false, flame:'未點火',
- brazed:false, pressureTest:false, vacuumDone:false, valvesOpen:false
-};
-const env={outdoorHeight:3.6,awning:true,ventilation:'差',rain:true,drainGas:true,indoorHeight:2.8,returnAir:'不足',ceilingGap:'4cm'};
-const rated={model:'FU-52HSG',refrigerant:'R32',ratedCurrent:'6.8A',maxCurrent:'9.8A'};
-const tools=[
- ['clamp','勾表','ACV/ACA/Ω/通斷'],['meter','三用電表','ACV/DCV/Ω/通斷'],['capmeter','電容測試器','μF測試'],['gauge','壓力錶','只顯示壓力值'],
- ['driver','起子工具組','拆外殼/外蓋'],['ladder','10尺梯','內外機高處作業'],['belt','安全帶','高處作業防墜'],
- ['capPart','備用電容','更換電容'],['fusePart','保險絲15A','更換保險絲'],['boardPart','備用機板','更換機板'],
- ['washer','清洗工具','清洗濾網'],['hex','六角板手','關/開維修閥'],['torch','氧乙炔組','氧氣/乙炔/焊槍'],
- ['lighter','點火器','點火'],['rod','焊條','燒焊補洞'],['blanket','防火毯','防火'],['extinguisher','滅火器','初期滅火'],
- ['heatShield','斷熱材料','濕抹布/隔熱材料'],['vacuum','真空泵','抽真空'],['detector','探漏器','確認漏點'],['flashlight','手電筒/放大鏡','目視油漬']
+const cases=[
+{id:'CASE001',name:'D6｜電容故障',fault:'cap',code:'D6',desc:'昨天正常，今天不冷，外機嗡嗡約3秒後停止。'},
+{id:'CASE002',name:'D6｜保險絲燒毀',fault:'fuse',code:'D6',desc:'外機無反應，室內機可開，外機板保險絲可能開路。'},
+{id:'CASE003',name:'D6｜機板燒毀',fault:'board',code:'D6',desc:'外機不啟動，曾聞到焦味，控制板區有焦黑。'},
+{id:'CASE004',name:'D6｜壓縮機卡死',fault:'compressor',code:'D6',desc:'外機啟動瞬間大電流，壓縮機不轉，保護停機。'},
+{id:'CASE005',name:'熱交換不良｜濾網髒',fault:'filter',code:'D6',desc:'室內風量變小，回風不足，熱交換差造成保護。'}
 ];
-const screen=document.getElementById('screen'), actions=document.getElementById('actions'), scoreEl=document.getElementById('score');
-const has=id=>selected.has(id);
-function labelTool(id){let t=tools.find(x=>x[0]===id);return t?t[1]:'未選'}
-function modes(){if(state.tool==='clamp')return ['ACV','ACA','Ω','通斷'];if(state.tool==='meter')return ['ACV','DCV','Ω','通斷'];if(state.tool==='capmeter')return ['µF'];if(state.tool==='gauge')return ['壓力'];return ['未選']}
-function score(){let s=100;if(!state.envChecked)s-=8;if(env.outdoorHeight>3&&!state.safetyBelt)s-=8;if(!state.displaySeen)s-=4;if(!state.current)s-=6;if(!state.pressure)s-=6;if(!state.compOhm)s-=6;if(!state.filterClean)s-=4;if(!state.capMeasured)s-=8;if(!state.capReplaced&&!state.brazed)s-=10;if(!state.retested)s-=10;if(!state.restored)s-=8;return Math.max(0,s)}
-function sync(){scoreEl.textContent=score()}
-function add(title,lines){let key=title+'|'+lines.join('|'); if(!known.find(k=>k.key===key)){known.push({key,title,lines});drawKnown()} sync()}
-function drawKnown(){let el=document.getElementById('known'); if(!el)return; el.innerHTML=known.map(k=>`<div class="data"><b>${k.title}</b>${k.lines.map(x=>`<div>${x}</div>`).join('')}</div>`).join('')}
-function meter(label,val,unit){let el=document.getElementById('meters'); if(el)el.innerHTML+=`<div class="meter"><div>${label}</div><div class="v">${val}<small>${unit}</small></div></div>`}
-function log(t){let el=document.getElementById('status'); if(el)el.textContent=`斷路器:${state.breakerOn?'ON':'OFF'}｜開機:${state.unitOn?'ON':'OFF'}｜梯子:${state.ladderSet?'已架':'未架'}｜安全帶:${state.safetyBelt?'已掛':'未掛'}\\n工具:${labelTool(state.tool)} → 模式:${state.mode} → 位置:${state.target}\\n${t}`;sync()}
-function ticket(){return `<div class="card ticket"><h2>維修單 DEMO-016</h2><p><b>品牌：</b>冰點　<b>冷媒：</b>${rated.refrigerant}　<b>機型：</b>${rated.model}</p><p><b>名牌：</b>額定 ${rated.ratedCurrent}｜最大 ${rated.maxCurrent}</p><p><b>故障碼：</b>${state.retested?'正常':'D6'}</p><p><b>客訴：</b>昨天還會冷，今天不冷；外機偶爾嗡嗡聲後停止。</p></div>`}
-function side(){return `<aside class="panel"><h2>工具操作</h2><div class="toolPanel"><div class="row">${['clamp','meter','capmeter','gauge'].map(id=>`<button class="miniBtn ${state.tool===id?'active':''}" onclick="pickTool('${id}')">${labelTool(id)}<small>${tools.find(t=>t[0]===id)[2]}</small></button>`).join('')}</div><h2>模式</h2><div class="row">${modes().map(m=>`<button class="miniBtn ${state.mode===m?'active':''}" onclick="pickMode('${m}')">${m}</button>`).join('')}</div><div class="data"><b>目前流程</b><br>工具：${labelTool(state.tool)}<br>模式：${state.mode}<br>位置：${state.target}</div><div class="data"><b>名牌</b><br>${rated.model}<br>${rated.refrigerant}<br>額定 ${rated.ratedCurrent}<br>最大 ${rated.maxCurrent}</div></div><h2>已知數據</h2><div class="known" id="known"></div><div id="meters"></div><div class="status" id="status"></div></aside>`}
-function act(extra=''){actions.innerHTML=`<button class="btn" onclick="ticketModal()">維修單</button><button class="btn btn2" onclick="site()">大場景</button><button class="btn btn2" onclick="powerPanel()">電源</button><button class="btn btn2" onclick="repairPanel()">維修</button><button class="btn btn2" onclick="brazePanel()">燒焊</button><button class="btn btn2" onclick="restorePanel()">復原</button><button class="btn btn2" onclick="diagnosis()">結案</button><button class="btn btnDanger" onclick="giveUp()">放棄案件</button>${extra}`}
-function ticketModal(){document.body.insertAdjacentHTML('beforeend',`<div class="modal" id="m"><div class="box">${ticket()}<button class="btn" onclick="document.getElementById('m').remove()">關閉</button></div></div>`)}
-function pickTool(id){if(!has(id)){log('你沒有攜帶這個工具。');return}state.tool=id;state.mode=modes()[0];state.target='未選';refresh()}
-function pickMode(m){state.mode=m;state.target='未選';refresh()}
-function refresh(){if(currentView==='outdoor')outdoor();else if(currentView==='indoor')indoor();else if(currentView==='power')powerPanel();else if(currentView==='braze')brazePanel();else site()}
-function start(){screen.innerHTML=ticket();actions.innerHTML='<button class="btn" onclick="selectTools()">選擇攜帶物品</button>';sync()}
-function selectTools(){screen.innerHTML=ticket()+`<div class="card"><h2>選擇攜帶物品</h2><div class="grid">${tools.map(t=>`<button class="selectTool ${has(t[0])?'selected':''}" onclick="toggle('${t[0]}')">${t[1]}<small>${t[2]}</small></button>`).join('')}</div></div>`;actions.innerHTML='<button class="btn" onclick="site()">到客戶家</button><button class="btn btnDanger" onclick="giveUp()">放棄案件</button>'}
-function toggle(id){has(id)?selected.delete(id):selected.add(id);selectTools()}
-function site(){currentView='site';screen.innerHTML=`<div class="layout"><div class="scene"><svg viewBox="0 0 600 430"><rect width="600" height="430" fill="#dcecf5"/><rect x="0" y="305" width="600" height="125" fill="#c8d7df"/><rect x="50" y="70" width="185" height="58" rx="14" fill="#fff" stroke="#789"/><rect x="72" y="87" width="145" height="24" rx="6" class="display"/><text x="118" y="106" class="tiny">${state.retested?'18°C OK':(state.unitOn?'18°C D6':'OFF')}</text><rect x="380" y="235" width="150" height="96" rx="12" fill="#f7f7f7" stroke="#678"/><circle cx="455" cy="283" r="34" fill="none" stroke="#789" stroke-width="8"/><rect x="390" y="170" width="165" height="42" fill="${env.awning?'#9fb8c8':'transparent'}" stroke="#789"/><rect x="365" y="225" width="190" height="115" class="${env.ventilation==='差'?'ventBad':''}"/><circle cx="530" cy="330" r="28" class="${env.drainGas?'gas':''}"/><path class="ladder" d="${state.ladderSet?'M520 305 l40 -95 l20 0 l-40 95':'M520 305 l35 -65 l18 0 l-35 65'}"/>${env.rain?'<line x1="350" y1="40" x2="330" y2="80" class="rain"/><line x1="390" y1="40" x2="370" y2="80" class="rain"/>':''}</svg>
-<button class="spot" style="left:7%;top:17%" onclick="measureAt('室內顯示面板')">室內面板</button><button class="spot" style="left:15%;top:31%" onclick="enterIndoor()">內機</button><button class="spot" style="left:63%;top:52%" onclick="enterOutdoor()">外機</button><button class="spot" style="left:68%;top:38%" onclick="envPanel()">案場環境</button><button class="spot" style="left:86%;top:73%" onclick="measureAt('排水管')">排水/沼氣</button><button class="spot" style="left:85%;top:62%" onclick="setLadder()">架梯子</button><button class="spot" style="left:77%;top:62%" onclick="setBelt()">掛安全帶</button><button class="spot" style="left:38%;top:18%" onclick="togglePower()">遙控/開機</button><button class="spot" style="left:48%;top:18%" onclick="listen()">聽聲音</button></div>${side()}</div>`;act();drawKnown();log('聲音可重複按；壓力只有數值；名牌固定右側。')}
-function envPanel(){state.envChecked=true;add('案場環境',[`外機高度 ${env.outdoorHeight}m`,`雨遮：有`,`通風：${env.ventilation}`,`內機高度 ${env.indoorHeight}m`,`回風：${env.returnAir}`]);site()}
-function setLadder(){if(!has('ladder')){log('沒帶梯子，不能建立高處作業條件。');return}state.ladderSet=true;add('梯子',['已架設10尺梯']);site()}
-function setBelt(){if(!has('belt')){log('沒帶安全帶。');return}if(!state.ladderSet){log('先架梯子再掛安全帶。');return}state.safetyBelt=true;add('安全帶',['已穿戴並掛固定點']);site()}
-function togglePower(){if(!state.breakerOn){add('開機測試',['斷路器OFF，遙控無反應']);return}state.unitOn=!state.unitOn;add('開機狀態',[state.unitOn?'冷氣已開機':'冷氣已關機']);site()}
-function listen(){if(!state.unitOn)add('聲音',['無運轉聲']);else if(state.retested)add('聲音',['外機穩定運轉聲']);else add('聲音',['嗡～～約3秒停止']);site()}
-function powerPanel(){currentView='power';screen.innerHTML=`<div class="layout"><div class="scene"><div class="card"><h2>電源</h2><div class="grid"><button class="choice" onclick="state.breakerOn=true;add('電源',['斷路器ON']);powerPanel()">斷路器ON</button><button class="choice" onclick="state.breakerOn=false;state.unitOn=false;add('電源',['斷路器OFF']);powerPanel()">斷路器OFF</button><button class="choice" onclick="measureAt('配電箱')">量配電箱</button></div></div></div>${side()}</div>`;act();drawKnown();log('電源管理。')}
-function enterIndoor(){if(!has('driver')){log('沒有起子工具。');return}if(!state.ladderSet){log('內機高度2.8m，未架梯子無法安全拆內機，不是直接墜落。');return}state.indoorCover=true;indoor()}
-function enterOutdoor(){if(!has('driver')){log('沒有起子工具。');return}if(!state.ladderSet){log('外機高度3.6m，未架梯子無法接近，不是直接墜落。');return}if(env.outdoorHeight>3&&!state.safetyBelt)add('高處風險',['有梯子但未掛安全帶，扣安全分']);state.outdoorCover=true;outdoor()}
-function indoor(){currentView='indoor';screen.innerHTML=`<div class="layout"><div class="scene"><svg viewBox="0 0 560 430"><rect width="560" height="430" fill="#edf6fb"/><rect x="35" y="55" width="490" height="310" rx="24" fill="#fff" stroke="#789" stroke-width="3"/><rect x="92" y="108" width="380" height="45" class="${state.filterClean?'filterClean':'filterDirt'}"/><text x="215" y="136" font-size="18" fill="${state.filterClean?'#145':'#fff'}">${state.filterClean?'濾網已清洗':'濾網髒污'}</text></svg><button class="spot" style="left:38%;top:31%" onclick="measureAt('內機端子')">內機端子</button><button class="spot" style="left:40%;top:40%" onclick="filter()">檢查濾網</button><button class="spot" style="left:53%;top:40%" onclick="cleanFilter()">清洗濾網</button></div>${side()}</div>`;act();drawKnown();log('內機畫面。')}
-function outdoor(){currentView='outdoor';screen.innerHTML=`<div class="layout"><div class="scene"><svg viewBox="0 0 700 500"><rect width="700" height="500" fill="#edf6fb"/><rect x="25" y="24" width="650" height="448" rx="20" fill="#f8fafb" stroke="#789" stroke-width="3"/><rect x="45" y="45" width="350" height="270" rx="14" class="pcb"/><text x="150" y="72" class="whiteLabel">室外控制板配置圖</text><rect x="80" y="95" width="75" height="45" fill="#eee" stroke="#555"/><text x="88" y="121" class="label">AC IN</text><rect x="80" y="155" width="75" height="45" fill="#eee" stroke="#555"/><text x="88" y="181" class="label">COMP</text><rect x="218" y="165" width="42" height="30" class="${state.boardReplaced||state.retested?'normalPart':'burn'}"/><rect x="282" y="165" width="70" height="35" class="${state.fuseReplaced||state.retested?'fuseGood':'fuseBad'}"/><text x="293" y="188" font-size="12" fill="${state.fuseReplaced||state.retested?'#145':'#fff'}">FUSE</text><rect x="430" y="60" width="190" height="155" rx="12" fill="#dff1f8" stroke="#789"/><text x="485" y="88" class="label">壓力區</text><path d="M455 205 A75 75 0 0 1 605 205" class="gaugeBlue"/><line x1="530" y1="205" x2="500" y2="${state.retested?'130':'165'}" class="needle"/><rect x="430" y="260" width="170" height="90" rx="10" fill="#fff2cc" stroke="#9b7"/><text x="465" y="310" class="label">電容區</text></svg><button class="spot" style="left:15%;top:23%" onclick="measureAt('外機AC端子')">AC端子</button><button class="spot" style="left:15%;top:36%" onclick="measureAt('壓縮機端子')">壓縮機端子</button><button class="spot" style="left:42%;top:36%" onclick="measureAt('保險絲')">保險絲</button><button class="spot" style="left:28%;top:37%" onclick="measureAt('橋式整流器')">橋整</button><button class="spot" style="left:72%;top:63%" onclick="measureAt('電容')">電容</button><button class="spot" style="left:63%;top:75%" onclick="measureAt('壓縮機線')">勾電流</button><button class="spot" style="left:76%;top:43%" onclick="measureAt('壓力口')">壓力</button><button class="spot" style="left:82%;top:51%" onclick="measureAt('油漬')">目視油漬</button></div>${side()}</div>`;act('<button class="btn btn2" onclick="retest()">送電複測</button>');drawKnown();log('外機畫面。未運轉壓力不會變小。')}
-function measureAt(t){state.target=t;
- if(t==='室內顯示面板'){state.displaySeen=true;add('室內顯示',[state.retested?'18℃ OK':'18℃ D6']);refresh();return}
- if(t==='排水管'){state.envChecked=true;add('排水/沼氣',['有臭味，可能造成腐蝕或誤判']);refresh();return}
- if(t==='配電箱'){if((state.tool==='meter'||state.tool==='clamp')&&state.mode==='ACV'){add('配電箱電壓',[state.breakerOn?'220V':'0V']);meter('配電箱',state.breakerOn?'220':'0','V')}else log('需要ACV模式');return}
- if(t==='內機端子'){if(state.tool==='meter'&&state.mode==='DCV'){add('內機控制電壓',['18V']);meter('內機控制','18','V')}else log('需要三用電表DCV');return}
- if(t==='外機AC端子'){if((state.tool==='meter'||state.tool==='clamp')&&state.mode==='ACV'){add('外機AC電壓',[state.breakerOn?'220V':'0V']);meter('外機AC',state.breakerOn?'220':'0','V')}else log('需要ACV模式');return}
- if(t==='壓縮機端子'){if(state.breakerOn){log('量阻值要先斷電');return}if((state.tool==='meter'&&state.mode==='Ω')||(state.tool==='clamp'&&(state.mode==='Ω'||state.mode==='通斷'))){state.compOhm=true;add('壓縮機阻值',['C-R 1.2Ω','C-S 2.8Ω','R-S 4.0Ω','對地OL']);meter('對地','OL','Ω')}else log('需要Ω或通斷');return}
- if(t==='壓縮機線'){if(!(state.tool==='clamp'&&state.mode==='ACA')){log('勾電流要勾表ACA');return}if(!state.unitOn){add('電流',['0A']);meter('電流','0','A')}else if(state.retested){state.current=true;add('電流',['6.2A']);meter('電流','6.2','A')}else{state.current=true;add('電流',['18A→0A']);meter('電流','18→0','A')}return}
- if(t==='壓力口'){if(!(state.tool==='gauge'&&state.mode==='壓力')){log('需要壓力錶');return}state.pressure=true;if(!state.unitOn||(!state.current&&!state.retested)){add('壓力表讀值',['160 psi']);meter('壓力','160','psi')}else if(state.retested){add('壓力表讀值',['118 psi']);meter('壓力','118','psi')}else{add('壓力表讀值',['160 psi']);meter('壓力','160','psi')}return}
- if(t==='電容'){if(state.breakerOn){log('測電容要先斷電');return}if(state.tool==='capmeter'&&state.mode==='µF'){state.capMeasured=true;add('電容',[state.capReplaced?'34.8µF 正常':'5.1µF 容量不足']);meter('電容',state.capReplaced?'34.8':'5.1','µF')}else log('需要電容表µF');return}
- if(t==='保險絲'){state.fuseSeen=true;add('保險絲',[state.fuseReplaced?'導通正常':'外觀發黑/OL']);meter('保險絲',state.fuseReplaced?'0':'OL','Ω');return}
- if(t==='橋式整流器'){state.boardChecked=true;add('機板',[state.boardReplaced?'外觀正常':'橋整附近焦黑']);return}
- if(t==='油漬'){if(!has('flashlight')){log('沒有手電筒/放大鏡，目視困難');return}state.oilSeen=true;add('目視油漬',['四通閥焊點旁有淡油漬，疑似漏點']);return}
+let selectedCase=null, view='select', tab='case', actionLog=[], gameOver=false;
+const required=['ticket','env','display','listen','powerCheck','voltageOut','current','pressure','ohm','capTest','filterCheck','root','repair','retest','listenFixed','restore'];
+let s={breaker:true,power:false,ladder:false,belt:false,indoorOpen:false,outdoorOpen:false,tool:'',mode:'',target:'',
+ticket:false,env:false,display:false,listen:false,listenFixed:false,powerCheck:false,voltageOut:false,voltageIn:false,current:false,pressure:false,ohm:false,capTest:false,filterCheck:false,filterClean:false,root:false,repair:false,retest:false,restore:false,
+fixed:false,cap:false,fuse:false,board:false,compressor:false};
+function resetState(){actionLog=[];s={breaker:true,power:false,ladder:false,belt:false,indoorOpen:false,outdoorOpen:false,tool:'',mode:'',target:'',
+ticket:false,env:false,display:false,listen:false,listenFixed:false,powerCheck:false,voltageOut:false,voltageIn:false,current:false,pressure:false,ohm:false,capTest:false,filterCheck:false,filterClean:false,root:false,repair:false,retest:false,restore:false,
+fixed:false,cap:false,fuse:false,board:false,compressor:false};}
+function chooseCase(i){resetState();selectedCase=cases[i];view='site';tab='case';log('選擇 '+selectedCase.name,'ticket');draw();}
+function score(){let done=required.filter(k=>s[k]).length;let v=Math.round(done/required.length*100);document.getElementById('score').textContent=v;return v;}
+function log(msg, mark){actionLog.push({n:actionLog.length+1,msg,mark});if(mark)s[mark]=true;score();drawPanelOnly();}
+function say(x){let d=document.createElement('div');d.className='toast';d.textContent=x;document.body.appendChild(d);setTimeout(()=>d.remove(),2300);}
+function hazard(t,m){gameOver=true;document.getElementById('scene').innerHTML=`<div class="card gameover"><h2>GAME OVER｜${t}</h2><p>${m}</p><button class="btn" onclick="location.reload()">重新開始</button></div>`;document.getElementById('bottom').style.display='none';document.getElementById('score').textContent='0';}
+function statusText(){if(!selectedCase)return '未選';return s.fixed?'正常':(s.power?selectedCase.code:'OFF');}
+function showCode(){return statusText();}
+function sceneSelect(){return `<div class="bigcard"><h2>選擇狀況題</h2><p>固定學習模式：一題一個主故障，評分看你有沒有完成排除流程。</p>${cases.map((c,i)=>`<button class="btn2 btn" onclick="chooseCase(${i})">${c.id} ${c.name}</button>`).join('')}</div>`;}
+function sceneSite(){return `<svg viewBox="0 0 600 430"><rect width="600" height="430" fill="#dcecf5"/><rect y="305" width="600" height="125" fill="#c8d7df"/><rect x="50" y="70" width="185" height="58" rx="14" fill="#fff" stroke="#789"/><rect x="72" y="87" width="145" height="24" rx="6" class="display"/><text x="118" y="106" class="tiny">${s.fixed?'18°C OK':(s.power?'18°C '+selectedCase.code:'OFF')}</text><rect x="380" y="235" width="150" height="96" rx="12" fill="#f7f7f7" stroke="#678"/><circle cx="455" cy="283" r="34" fill="none" stroke="#789" stroke-width="8"/><rect x="365" y="225" width="190" height="115" class="ventBad"/><path d="${s.ladder?'M520 305 l40 -95 l20 0 l-40 95':'M520 305 l35 -65 l18 0 l-35 65'}" fill="#d7e0e5" stroke="#789" stroke-width="4"/></svg>
+<button class="spot" style="left:8%;top:18%" onclick="clickPoint('display')">面板</button>
+<button class="spot" style="left:17%;top:34%" onclick="openIndoor()">內機</button>
+<button class="spot" style="left:64%;top:55%" onclick="openOutdoor()">外機</button>
+<button class="spot" style="left:58%;top:22%" onclick="listen()">聽聲音</button>
+<button class="spot" style="left:80%;top:66%" onclick="setLadder()">架梯</button>
+<button class="spot" style="left:68%;top:66%" onclick="setBelt()">安全帶</button>`;}
+function sceneIndoor(){return `<svg viewBox="0 0 560 430"><rect width="560" height="430" fill="#edf6fb"/><rect x="35" y="55" width="490" height="310" rx="24" fill="#fff" stroke="#789" stroke-width="3"/><rect x="92" y="108" width="380" height="45" class="${s.filterClean?'filterClean':'filterDirt'}"/><text x="215" y="136" font-size="18" fill="${s.filterClean?'#145':'#fff'}">${s.filterClean?'濾網已清洗':'濾網髒污'}</text></svg>
+<button class="spot" style="left:36%;top:32%" onclick="clickPoint('indoorV')">內機端子</button>
+<button class="spot" style="left:40%;top:42%" onclick="checkFilter()">濾網</button>
+<button class="spot" style="left:55%;top:42%" onclick="cleanFilter()">清洗</button>`;}
+function sceneOutdoor(){return `<svg viewBox="0 0 700 500"><rect width="700" height="500" fill="#edf6fb"/><rect x="25" y="24" width="650" height="448" rx="20" fill="#f8fafb" stroke="#789" stroke-width="3"/><rect x="45" y="45" width="350" height="270" rx="14" class="pcb"/><text x="150" y="72" class="whiteLabel">室外控制板</text><rect x="80" y="95" width="75" height="45" fill="#eee" stroke="#555"/><text x="88" y="121" class="label">AC IN</text><rect x="80" y="155" width="75" height="45" fill="#eee" stroke="#555"/><text x="88" y="181" class="label">COMP</text><rect x="218" y="165" width="42" height="30" class="${s.board||s.fixed?'normal':'burn'}"/><rect x="282" y="165" width="70" height="35" class="${s.fuse||s.board||s.fixed?'normal':'bad'}"/><text x="293" y="188" font-size="12" fill="${s.fuse||s.board||s.fixed?'#145':'#fff'}">FUSE</text><rect x="430" y="60" width="190" height="155" rx="12" fill="#dff1f8" stroke="#789"/><path d="M455 205 A75 75 0 0 1 605 205" class="gauge"/><line x1="530" y1="205" x2="500" y2="${s.fixed?'130':'165'}" class="needle"/><rect x="430" y="260" width="170" height="90" rx="10" fill="#fff2cc" stroke="#9b7"/></svg>
+<button class="spot" style="left:15%;top:24%" onclick="clickPoint('outV')">AC端子</button>
+<button class="spot" style="left:15%;top:37%" onclick="clickPoint('compOhm')">壓縮機</button>
+<button class="spot" style="left:42%;top:36%" onclick="clickPoint('fuse')">保險絲</button>
+<button class="spot" style="left:29%;top:37%" onclick="clickPoint('board')">機板</button>
+<button class="spot" style="left:72%;top:63%" onclick="clickPoint('cap')">電容</button>
+<button class="spot" style="left:64%;top:76%" onclick="clickPoint('current')">電流</button>
+<button class="spot" style="left:78%;top:44%" onclick="clickPoint('pressure')">壓力</button>`;}
+function drawScene(){document.getElementById('scene').innerHTML=view==='select'?sceneSelect():view==='indoor'?sceneIndoor():view==='outdoor'?sceneOutdoor():sceneSite();}
+function drawPanelOnly(){drawPanel(); if(view!=='select')drawScene(); score();}
+function drawPanel(){document.querySelectorAll('.tab').forEach((b,i)=>b.classList.toggle('on',['tools','status','repair','log','case'][i]===tab));let p=document.getElementById('panel');
+if(view==='select'){p.innerHTML='<div class="data">請先選擇一題開始練習。</div>';return;}
+if(tab==='tools')p.innerHTML=`<div class="card"><b>工具 → 模式 → 點畫面位置</b><br>目前：${toolName(s.tool)} / ${s.mode||'未選'} / ${s.target||'未選'}</div><div class="row">${['clamp','meter','capmeter','gauge'].map(id=>`<button class="tool ${s.tool===id?'on':''}" onclick="pickTool('${id}')">${toolName(id)}<small>${toolDesc(id)}</small></button>`).join('')}</div><div class="card"><b>模式</b></div><div class="row">${modes().map(m=>`<button class="tool ${s.mode===m?'on':''}" onclick="s.mode='${m}';draw()">${m}</button>`).join('')}</div><div class="data"><b>名牌</b><br>FU-52HSG / R32<br>額定 6.8A｜最大 9.8A</div>`;
+else if(tab==='status')p.innerHTML=`<div class="statusGrid">
+<div class="statusItem"><b>故障碼</b>${showCode()}</div><div class="statusItem"><b>聲音</b>${s.fixed?'穩定運轉聲':(s.power?'嗡3秒停':'無運轉聲')}</div>
+<div class="statusItem"><b>電流</b>${s.fixed?'6.2A':(s.current?'18A→0A':'未量')}</div><div class="statusItem"><b>壓力</b>${s.fixed?'118 psi':(s.pressure?'160 psi':'未量')}</div>
+<div class="statusItem"><b>安全帶</b>${s.belt?'已掛':'未掛'}</div><div class="statusItem"><b>主故障</b>隱藏，結案才檢討</div>
+<div class="statusItem"><b>修復</b>${s.fixed?'已修復':'未修復'}</div><div class="statusItem"><b>學習原則</b>先排除，不背答案</div></div>`;
+else if(tab==='repair')p.innerHTML=`<div class="row"><button class="btn" onclick="replacePart('cap')">更換電容</button><button class="btn" onclick="replacePart('fuse')">更換保險絲</button><button class="btn" onclick="replacePart('board')">更換機板</button><button class="btn" onclick="replacePart('compressor')">更換壓縮機</button><button class="btn2 btn" onclick="retest()">斷電重開複測</button></div><div class="data">修復不等於滿分；未量測、未查根因、未復原都會扣分。</div>`;
+else if(tab==='log')p.innerHTML=actionLog.map(x=>`<div class="logline">${x.n}. ${x.msg}</div>`).join('')||'<div class="data">尚無動作紀錄</div>';
+else p.innerHTML=`<div class="card"><b>維修單</b><br>${selectedCase.id} ${selectedCase.name}<br>冰點 FU-52HSG / R32<br>故障碼：${showCode()}<br>${selectedCase.desc}</div><div class="data"><b>學習提示：</b>先問「有沒有運轉、電有沒有到、壓縮機有沒有做功、哪些數據支持你的假設」。</div><button class="btn2 btn" onclick="envCheck()">案場環境</button><button class="warn btn" onclick="s.power=!s.power;log(s.power?'遙控開機':'遙控關機');draw()">遙控開關</button><button class="danger btn" onclick="location.reload()">放棄/重新開始</button><button class="btn" onclick="finish()">結案檢討</button>`;
 }
-function filter(){state.filter=true;add('濾網',['濾網髒，回風不足'])}
-function cleanFilter(){if(!has('washer')){add('清洗濾網',['沒清洗工具，簡易拍灰']);return}state.filterClean=true;add('清洗濾網',['已清洗濾網']);indoor()}
-function repairPanel(){screen.innerHTML=`<div class="layout"><div class="scene"><div class="card"><h2>維修</h2><div class="grid"><button class="choice" onclick="replaceCap()">更換電容</button><button class="choice" onclick="replaceFuse()">更換保險絲</button><button class="choice" onclick="replaceBoard()">更換機板</button><button class="choice" onclick="brazePanel()">燒焊補洞</button></div></div></div>${side()}</div>`;act();drawKnown();log('維修不是一鍵全修，每項獨立。')}
-function replaceCap(){if(state.breakerOn){log('先斷電');return}if(!has('capPart')){log('沒帶電容');return}state.capReplaced=true;add('維修',['已更換電容；需重新送電檢查，故障碼暫不消失'])}
-function replaceFuse(){if(state.breakerOn){log('先斷電');return}if(!has('fusePart')){log('沒帶保險絲');return}state.fuseReplaced=true;add('維修',['已更換保險絲；需重新送電檢查'])}
-function replaceBoard(){if(state.breakerOn){log('先斷電');return}if(!has('boardPart')){log('沒帶機板');return}state.boardReplaced=true;add('維修',['已更換機板；需重新送電檢查'])}
-function brazePanel(){currentView='braze';let smoke=state.ignited&&state.flame==='黑煙';screen.innerHTML=`<div class="layout"><div class="scene"><svg viewBox="0 0 700 500"><rect width="700" height="500" fill="#edf6fb"/><rect x="60" y="80" width="200" height="310" rx="20" fill="#dfe9ef" stroke="#789"/><text x="102" y="120" class="label">氧氣 ${state.oxygen}</text><rect x="310" y="80" width="200" height="310" rx="20" fill="#f1d7d7" stroke="#987"/><text x="345" y="120" class="label">乙炔 ${state.acetylene}</text><path d="M500 340 C555 315 570 285 590 250" stroke="#333" stroke-width="8" fill="none"/><path d="M590 250 C620 220 640 220 660 245" class="${state.flame==='中性焰'?'neutral':'flame'}"/><circle cx="235" cy="250" r="35" fill="#c99" opacity=".35"/><text x="205" y="255" class="label">漏點</text>${smoke?'<circle cx="635" cy="210" r="24" class="smoke"/><circle cx="655" cy="190" r="18" class="smoke"/>':''}</svg><button class="spot" style="left:8%;top:70%" onclick="closeValves()">關維修閥</button><button class="spot" style="left:22%;top:70%" onclick="removeInsulation()">拆保溫</button><button class="spot" style="left:36%;top:70%" onclick="setHeatShield()">斷熱</button><button class="spot" style="left:50%;top:70%" onclick="firePrep()">防火</button><button class="spot" style="left:10%;top:25%" onclick="oxygenPlus()">氧氣+</button><button class="spot" style="left:20%;top:25%" onclick="oxygenMinus()">氧氣-</button><button class="spot" style="left:47%;top:25%" onclick="acetPlus()">乙炔+</button><button class="spot" style="left:58%;top:25%" onclick="acetMinus()">乙炔-</button><button class="spot" style="left:76%;top:52%" onclick="ignite()">點火</button><button class="spot" style="left:76%;top:63%" onclick="braze()">燒焊補洞</button><button class="spot" style="left:76%;top:74%" onclick="pressureTest()">保壓</button><button class="spot" style="left:86%;top:74%" onclick="vacuumDo()">抽真空</button><button class="spot" style="left:86%;top:63%" onclick="openValves()">開維修閥</button></div>${side()}</div>`;act();drawKnown();log('必須先目視油漬/確認漏點才可燒焊。')}
-function need(id,msg){if(!has(id)){log(msg);return false}return true}
-function closeValves(){if(!need('hex','沒有六角板手'))return;state.valvesClosed=true;add('燒焊準備',['已關維修閥'])}
-function removeInsulation(){state.insulationRemoved=true;add('燒焊準備',['已拆保溫'])}
-function setHeatShield(){if(!need('heatShield','沒有斷熱材料'))return;state.heatShield=true;add('斷熱',['已斷熱'])}
-function firePrep(){state.fireBlanket=has('blanket');state.extinguisherReady=has('extinguisher');add('防火',[`防火毯:${state.fireBlanket?'有':'無'}`,`滅火器:${state.extinguisherReady?'有':'無'}`])}
-function oxygenPlus(){if(!need('torch','沒有氧乙炔組'))return;state.oxygen=Math.min(10,state.oxygen+1);flameState();brazePanel()}function oxygenMinus(){state.oxygen=Math.max(0,state.oxygen-1);flameState();brazePanel()}function acetPlus(){if(!need('torch','沒有氧乙炔組'))return;state.acetylene=Math.min(10,state.acetylene+1);flameState();brazePanel()}function acetMinus(){state.acetylene=Math.max(0,state.acetylene-1);flameState();brazePanel()}
-function flameState(){if(!state.ignited){state.flame='未點火';return}let d=state.acetylene-state.oxygen;if(state.oxygen===0||state.acetylene===0)state.flame='熄火';else if(d>=3)state.flame='黑煙';else if(d<=-3)state.flame='氧化焰';else state.flame='中性焰'}
-function ignite(){if(!need('lighter','沒有點火器'))return;if(state.acetylene<=0){log('乙炔未開');return}state.ignited=true;flameState();add('點火',[`火焰:${state.flame}`]);brazePanel()}
-function braze(){if(!state.oilSeen&&!state.leakConfirmed){log('沒有目視油漬或確認漏點，不能燒焊');return}if(!state.valvesClosed){log('未關維修閥');return}if(!state.insulationRemoved){log('未拆保溫');return}if(!state.heatShield)add('風險',['未斷熱']);if(state.flame!=='中性焰'){add('燒焊結果',[`火焰:${state.flame}`,'焊道品質不良']);return}if(!has('rod')){log('沒有焊條');return}state.brazed=true;add('燒焊補洞',['中性焰補洞完成'])}
-function pressureTest(){if(!state.brazed){log('尚未燒焊');return}state.pressureTest=true;add('保壓',['300 psi → 300 psi'])}
-function vacuumDo(){if(!has('vacuum')){log('沒有真空泵');return}if(!state.pressureTest){log('未保壓');return}state.vacuumDone=true;add('抽真空',['500 micron'])}
-function openValves(){if(!state.valvesClosed){log('維修閥未關');return}state.valvesOpen=true;add('維修閥',['已開維修閥'])}
-function retest(){if(!state.capReplaced&&!state.brazed&&!state.fuseReplaced&&!state.boardReplaced){add('複測',['未完成維修，仍異常']);return}state.breakerOn=true;state.unitOn=true;state.retested=true;add('複測',['斷電重開後，D6消失','外機穩定運轉']);outdoor()}
-function restorePanel(){screen.innerHTML=`<div class="layout"><div class="scene"><div class="card"><h2>復原</h2><div class="grid"><button class="choice" onclick="state.indoorCover=false;add('復原',['內機外蓋裝回'])">裝回內機</button><button class="choice" onclick="state.outdoorCover=false;add('復原',['外機機殼裝回'])">裝回外機</button><button class="choice" onclick="state.ladderSet=false;add('復原',['梯子收妥'])">收梯子</button><button class="choice" onclick="state.safetyBelt=false;add('復原',['安全帶收妥'])">收安全帶</button><button class="choice" onclick="state.restored=true;add('復原完成',['現場復原完成'])">確認完成</button></div></div></div>${side()}</div>`;act();drawKnown();log('每個復原按鈕獨立作用。')}
-function diagnosis(){let ev=[];if(env.outdoorHeight>3&&!state.safetyBelt)ev.push('高處作業未掛安全帶');if(!state.current)ev.push('未量電流');if(!state.pressure)ev.push('未量壓力');if(!state.compOhm)ev.push('未量壓縮機阻值');if(!state.retested)ev.push('未斷電重開複測故障碼');if(!state.restored)ev.push('未復原收工');screen.innerHTML=`<div class="card"><h2>結案</h2><p><b>評分：</b>${score()}</p>${ev.map(e=>`<p class="danger">• ${e}</p>`).join('')||'<p class="ok">流程完整</p>'}<button class="choice" onclick="location.reload()">重新挑戰</button></div>`;actions.innerHTML='<button class="btn btn2" onclick="site()">回現場</button><button class="btnDanger btn" onclick="giveUp()">放棄案件</button>'}
-function giveUp(){screen.innerHTML=`<div class="card"><h2>放棄案件</h2><p>案件已中止，可重新開始。</p><button class="btn" onclick="location.reload()">重新開始</button></div>`;actions.innerHTML=''}
-start()
+function draw(){drawScene();drawPanel();score();}
+function toolName(id){return {clamp:'勾表',meter:'三用電表',capmeter:'電容表',gauge:'壓力錶'}[id]||'未選';}
+function toolDesc(id){return {clamp:'ACV/DCV/ACA/Ω',meter:'ACV/DCV/Ω',capmeter:'µF',gauge:'壓力值'}[id]||'';}
+function modes(){if(s.tool==='clamp')return ['ACV','DCV','ACA','Ω','通斷'];if(s.tool==='meter')return ['ACV','DCV','Ω','通斷'];if(s.tool==='capmeter')return ['µF'];if(s.tool==='gauge')return ['壓力'];return ['未選'];}
+function pickTool(id){s.tool=id;s.mode=modes()[0];draw();}
+function clickPoint(t){s.target=t;
+if(t==='display'){log('查看室內顯示面板：'+showCode(),'display');return;}
+if(t==='indoorV'){if((s.tool==='meter'||s.tool==='clamp')&&s.mode==='DCV'){log('量內機控制電壓：18V','voltageIn')}else say('內機控制端請用 DCV');return;}
+if(t==='outV'){if((s.tool==='meter'||s.tool==='clamp')&&s.mode==='ACV'){log('量外機 AC：220V','voltageOut')}else say('外機AC請用ACV');return;}
+if(t==='compOhm'){if(s.breaker){hazard('觸電危險','送電狀態量壓縮機阻值。');return;}if((s.tool==='meter'||s.tool==='clamp')&&(s.mode==='Ω'||s.mode==='通斷')){let bad=selectedCase.fault==='compressor';log(bad?'量壓縮機阻值：1-2 0.2Ω / 2-3 0.4Ω / 1-3 0.6Ω / 對地5MΩ':'量壓縮機阻值：1-2 1.2Ω / 2-3 2.8Ω / 1-3 4.0Ω / 對地OL','ohm')}else say('請用Ω/通斷');return;}
+if(t==='fuse'){log('檢查保險絲：'+(selectedCase.fault==='fuse'&&!s.fuse&&!s.board?'OL/外觀發黑':'導通正常'));return;}
+if(t==='board'){log('檢查機板：'+(selectedCase.fault==='board'&&!s.board?'橋整附近焦黑':'外觀正常'),'root');return;}
+if(t==='cap'){if(s.breaker){hazard('電容危險','送電狀態拆測電容。');return;}if(s.tool==='capmeter'&&s.mode==='µF'){log('測電容：'+(selectedCase.fault==='cap'&&!s.cap?'5.1µF 容量不足':'34.8µF 正常'),'capTest')}else say('請用電容表 µF');return;}
+if(t==='current'){if(!(s.tool==='clamp'&&s.mode==='ACA')){say('勾電流要用勾表 ACA');return;}if(!s.power)log('量電流：0A');else if(s.fixed)log('量電流：6.2A','current');else log('量電流：18A→0A','current');return;}
+if(t==='pressure'){if(!(s.tool==='gauge'&&s.mode==='壓力')){say('請用壓力錶');return;}log('壓力表：'+(s.fixed?'118 psi':'160 psi'),'pressure');return;}
+}
+function envCheck(){log('案場環境：外機高度3.6m、內機2.8m、回風空間需檢查','env');}
+function setLadder(){s.ladder=true;log('架設梯子');}
+function setBelt(){if(!s.ladder){say('先架梯子');return;}s.belt=true;log('穿戴安全帶並掛固定點');}
+function openIndoor(){if(!s.ladder){say('內機2.8m，先架梯子');return;}view='indoor';s.indoorOpen=true;log('打開內機外蓋');draw();}
+function openOutdoor(){if(!s.ladder){say('外機3.6m，先架梯子');return;}view='outdoor';s.outdoorOpen=true;log('打開外機機殼');draw();}
+function listen(){if(!s.power){log('聽聲音：無運轉聲','listen');return;}if(s.fixed){log('聽聲音：外機穩定運轉聲','listenFixed');return;}log('聽聲音：嗡～～約3秒停止','listen');}
+function checkFilter(){s.filterCheck=true;let bad=selectedCase.fault==='filter';log(bad?'檢查濾網：嚴重髒污、回風不足':'檢查濾網：輕微髒污','filterCheck');}
+function cleanFilter(){s.filterClean=true;log('清洗濾網：回風改善');}
+function replacePart(p){if(s.breaker){hazard('觸電危險','送電狀態更換零件。');return;}s[p]=true;if(p==='board')s.fuse=true;log('更換'+({cap:'電容',fuse:'保險絲',board:'機板',compressor:'壓縮機'}[p]),'repair');}
+function retest(){s.breaker=false;log('斷電等待後重開');s.breaker=true;s.power=true;let ok=(selectedCase.fault==='cap'&&s.cap)||(selectedCase.fault==='fuse'&&(s.fuse||s.board))||(selectedCase.fault==='board'&&s.board)||(selectedCase.fault==='compressor'&&s.compressor)||(selectedCase.fault==='filter'&&s.filterClean);if(ok){s.fixed=true;log('複測：故障碼消失，外機穩定運轉','retest')}else log('複測：仍未完全修復，故障碼可能存在');draw();}
+function finish(){let miss=[];required.forEach(a=>{if(!s[a])miss.push(a)});let fixed=s.fixed;document.getElementById('scene').innerHTML=`<div class="card"><h2>結案檢討</h2><p><b>${score()} 分</b></p><p>${fixed?'<span class="ok">已修復主要故障</span>':'<span class="dangerText">尚未修復主要故障</span>'}</p><p><b>本題主故障：</b>${selectedCase.name}</p>${miss.map(m=>`<p class="dangerText">• 未完成：${m}</p>`).join('')||'<p class="ok">流程完整</p>'}</div>`;tab='log';drawPanel();}
+draw();
 </script>
-</body></html>
+</body>
+</html>
